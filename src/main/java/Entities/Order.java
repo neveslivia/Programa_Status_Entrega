@@ -1,74 +1,69 @@
 package Entities;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Order {
     private Integer id;
     private LocalDateTime moment;
-    private OrderStatusEntrega satus_pedido;
-    public LocalDateTime horario_pedido;
+    private OrderStatusEntrega status_pedido;
 
-    public Order(int i, Date date, OrderStatusEntrega pagamentoPendente){
-
-    }
-    public Order(Integer id, LocalDateTime moment, OrderStatusEntrega status_pedido,LocalDateTime horario_pedido){
+    public Order(Integer id, LocalDateTime moment, OrderStatusEntrega status_pedido) {
         this.id = id;
         this.moment = moment;
-        this.satus_pedido = status_pedido;
-        this.horario_pedido = horario_pedido;
-
+        this.status_pedido = status_pedido;
     }
 
-    public Order() {
 
-    }
 
     public Integer getId() {
         return id;
-    }
-
-    public LocalDateTime getMoment() {
-        return moment;
-    }
-
-    public OrderStatusEntrega getSatus_pedido() {
-        return satus_pedido;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public LocalDateTime getMoment() {
+        return moment;
+    }
+
     public void setMoment(LocalDateTime moment) {
         this.moment = moment;
     }
 
-    public void setSatus_pedido(OrderStatusEntrega satus_pedido) {
-        this.satus_pedido = satus_pedido;
+    public OrderStatusEntrega getStatus_pedido() {
+        return status_pedido;
     }
 
-    public LocalDateTime getHorario_pedido() {
-        return horario_pedido;
+    public void setStatus_pedido(OrderStatusEntrega status_pedido) {
+        this.status_pedido = status_pedido;
     }
 
-    public void setHorario_pedido(LocalDateTime horario_pedido) {
-        this.horario_pedido = horario_pedido;
-    }
-    public String Status(){
-        if (horario_pedido.isEqual(moment)){
-            satus_pedido = OrderStatusEntrega.PAGAMENTO_PENDENTE;
+    public void atualizacao() {
+        switch (status_pedido) {
+            case PAGAMENTO_PENDENTE:
+                status_pedido = OrderStatusEntrega.PEDIDO_PROCESSADO;
+                System.out.println("Status atualizado para: PEDIDO_PROCESSADO");
+                break;
+            case PEDIDO_PROCESSADO:
+                status_pedido = OrderStatusEntrega.SAIU_PARA_ENTREGA;
+                System.out.println("Status atualizado para: SAIU_PARA_ENTREGA");
+                break;
+            case SAIU_PARA_ENTREGA:
+                status_pedido = OrderStatusEntrega.ENTREGUE;
+                System.out.println("Status atualizado para: ENTREGUE");
+                break;
+            case ENTREGUE:
+                System.out.println("O pedido já foi entregue, não há mais atualizações.");
+                break;
+            default:
+                System.out.println("Status inválido!");
         }
-        return Status();
     }
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", moment=" + moment +
-                ", satus_pedido=" + satus_pedido +
-                ", horario_pedido=" + horario_pedido +
-                '}';
+        return String.format("Pedido ID: %d%nData: %s%nStatus: %s",
+                id, moment, status_pedido);
     }
 }
