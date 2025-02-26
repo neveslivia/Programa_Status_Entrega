@@ -5,19 +5,21 @@ import Entities.OrderStatusEntrega;
 import Entities.Products;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ProgramEntregas {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         Products product = new Products();
 
         System.out.println("Digite o nome do produto: ");
-        product.nome = sc.next();
+        product.setNome(sc.nextLine());
         System.out.println("Digite o valor do produto: ");
-        product.valor_produto = sc.nextDouble();
+        product.setValor_produto(sc.nextDouble());
         System.out.println("Digite a quantidade de produtos comprados: ");
-        product.quantidade = sc.nextInt();
+        product.setQuantidade(sc.nextInt());
         System.out.println("Digite o código de rastreio do pedido: ");
         Integer id = sc.nextInt();
 
@@ -31,10 +33,7 @@ public class ProgramEntregas {
             if (continuar.equals("S")) {
                 order.atualizacao();
             } else if (continuar.equals("N")) {
-                break;
-            } else {
-                System.out.println("Entrada inválida! Digite 'S' para continuar ou 'N' para sair.");
-            }
+                break;}
         }while (continuar.equals("S"));
 
         System.out.println("Resumo do Pedido");

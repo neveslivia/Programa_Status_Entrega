@@ -1,9 +1,9 @@
 package Entities;
 
 public class Products {
-    public String nome;
-    public int quantidade;
-    public  Double valor_produto;
+    private String nome;
+    private int quantidade;
+    private  double valor_produto;
 
 
     public Products(){
@@ -14,7 +14,7 @@ public class Products {
         this.quantidade = quantidade;
         this.valor_produto = valor_produto;
     }
-    public double valortotal( double valor_produto,int quantidade){
+    public double valortotal(){
         return  valor_produto * quantidade;
     }
 
@@ -26,24 +26,28 @@ public class Products {
         return quantidade;
     }
 
-    public Double getValor_produto() {
+    public double getValor_produto(double v) {
         return valor_produto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String setNome(String nome) {
+        return this.nome = nome;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public Integer setQuantidade(int quantidade) {
+        return this.quantidade = quantidade;
     }
 
-    public void setValor_produto(int valor_produto) {
-        this.valor_produto = (double) valor_produto;
+    public Double setValor_produto(double valor_produto) {
+       return this.valor_produto = (double) valor_produto;
     }
 
     @Override
     public String toString() {
-        return String.format("Nome do produto:, Quantidade:,  Valor total:," , setNome(nome),setQuantidade(quantidade),valortotal());
+         return String.format("Nome do produto:%s\nQuantidade: %d\nValor total do pedido:%.2f",
+                getNome(), getQuantidade(), valortotal());
+
     }
+
+
 }

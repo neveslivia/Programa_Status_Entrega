@@ -1,6 +1,8 @@
 package Entities;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Timer;
 
 public class Order {
     private Integer id;
@@ -11,6 +13,7 @@ public class Order {
         this.id = id;
         this.moment = moment;
         this.status_pedido = status_pedido;
+
     }
 
 
@@ -63,7 +66,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return String.format("Pedido ID: %d%nData: %s%nStatus: %s",
+        return String.format("Pedido ID: %d\nData:%s\nStatus: %s",
                 id, moment, status_pedido);
     }
 }
